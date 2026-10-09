@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="A simple tutorial to create a portfolio website using HTML, CSS, and GitHub Pages.">
+<title>How to create a portfolio website — Caroline Heijmans</title>
+<style>
+:root {
+  --background: #ffffff;
+  --text: #161616;
+  --muted: #575757;
+  --border: #dedede;
+  --surface: #f6f6f6;
+  --font-body: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --font-code: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --container: 1160px;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 28px; }
+body { margin: 0; background: var(--background); color: var(--text); font: 17px/1.7 var(--font-body); }
+a { color: inherit; }
+a:hover { text-decoration-thickness: 2px; }
+a:focus-visible { outline: 2px solid var(--text); outline-offset: 5px; border-radius: 2px; }
+.skip { position: fixed; top: -100px; left: 20px; z-index: 5; padding: 10px 16px; background: var(--background); }
+.skip:focus { top: 12px; }
+.container { width: min(var(--container), calc(100% - 80px)); margin-inline: auto; }
+.hero { padding-block: 72px 60px; }
+h1 { max-width: 900px; margin: 0 0 24px; font-size: clamp(38px, 5.5vw, 64px); font-weight: 750; line-height: 1.08; letter-spacing: -.04em; }
+.subtitle { max-width: 65ch; margin: 0; color: var(--muted); font-size: 20px; }
+.byline { margin-top: 25px; color: var(--muted); font-size: 13px; }
+.layout { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 64px; align-items: start; }
+.nav { position: sticky; top: 28px; max-height: calc(100vh - 56px); overflow-y: auto; padding-bottom: 12px; }
+.nav-inner { padding: 0; }
+.toc-label { margin: 0 0 20px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: .14em; color: var(--muted); }
+.steps { display: flex; flex-direction: column; gap: 14px; }
+.steps a { display: block; padding: 2px 0 2px 12px; border-left: 2px solid transparent; font-size: 13px; line-height: 1.5; color: var(--muted); text-decoration: none; }
+.steps a:hover, .steps a[aria-current] { color: var(--text); }
+.steps a[aria-current] { border-left-color: var(--text); font-weight: 650; }
+main { min-width: 0; max-width: 72ch; }
+section { padding: 40px 0; border-top: 1px solid var(--border); scroll-margin-top: 0; }
+section:first-child { padding-top: 0; border-top: 0; }
+h2 { margin: 0 0 23px; font-size: 28px; font-weight: 700; line-height: 1.25; letter-spacing: -.025em; }
+p { margin: 0 0 20px; }
+section > :last-child { margin-bottom: 0; }
+ul, ol { padding-left: 24px; margin: 0 0 22px; }
+li { padding-left: 4px; margin-block: 7px; }
+code { background: var(--surface); padding: 2px 5px; border-radius: 3px; font: .88em/1.65 var(--font-code); }
+pre { max-width: 100%; margin: 25px 0; padding: 20px; overflow-x: auto; background: var(--surface); border: 1px solid var(--border); border-radius: 4px; color: var(--text); font: 13px/1.65 var(--font-code); tab-size: 4; }
+pre code { padding: 0; border-radius: 0; background: transparent; color: inherit; font: inherit; }
+footer { border-top: 1px solid var(--border); padding: 25px 0; color: var(--muted); font-size: 13px; }
+footer .container { display: flex; gap: 20px; justify-content: space-between; }
+@media (max-width: 800px) {
+  .container { width: calc(100% - 40px); }
+  .hero { padding-block: 48px 40px; }
+  .layout { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .nav { position: static; max-height: none; padding: 0 0 28px; border-bottom: 1px solid var(--border); }
+  .toc-label { margin-bottom: 16px; }
+  .steps { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 13px 18px; }
+  .steps a { padding-left: 8px; }
+  main { max-width: 72ch; }
+  h1 { letter-spacing: -.035em; }
+  .subtitle { font-size: 18px; }
+  section { padding-block: 40px; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@media print {
+  .nav, .skip { display: none; }
+  .container { width: 100%; }
+  .layout { display: block; }
+  body { font-size: 11pt; }
+  .hero { padding-block: 24px; }
+  h1 { font-size: 36pt; }
+  pre { white-space: pre-wrap; overflow-wrap: anywhere; }
+}
+</style>
+</head>
+<body id="top">
+<a class="skip" href="#content">Skip to tutorial</a>
+<header class="hero container"><h1>How to create a portfolio website</h1><p class="subtitle">A simple tutorial to create a portfolio website using HTML, CSS, and GitHub Pages.</p><div class="byline">By Caroline Heijmans</div></header>
+<div class="layout container">
+<nav class="nav" aria-label="Tutorial steps"><div class="nav-inner"><p class="toc-label">On this page</p><div class="steps">
+<a href="#step-0">Step 0: Set up</a><a href="#step-1">Step 1: Brainstorm</a><a href="#step-2">Step 2: Mockup</a><a href="#step-3">Step 3: Build</a><a href="#step-4">Step 4: Review</a><a href="#step-5">Step 5: Add files</a><a href="#step-6">Step 6: Publish</a>
+</div></div></nav>
+<main id="content">
+<section id="goal"><h2>Goal</h2>
+<p>This tutorial will show you how to build a simple portfolio website from scratch using HTML, CSS, and free tools. You could also use a tool like Canva to create your portfolio, but coding it yourself gives you more flexibility to customize the design and choose what to include.</p>
+<p>Along the way, you’ll get an introduction to the basics of web development. You don’t need any coding experience to follow along: you’ll learn as you go, with AI to help you through the more advanced parts.</p>
+<p>This tutorial keeps things simple and assumes you’re already somewhat familiar with:</p>
+<ul><li>Using OpenCode with a free AI model</li><li>Using VS Code</li><li>The basics of HTML and CSS</li><li>Hosting a website on GitHub Pages</li></ul>
+<p>If any of this is new to you, don’t let that stop you! There are plenty of tutorials to help you get started and learn as you go. </p>
+</section>
+<section id="step-0"><h2></span> Step 0: Set up your tools</h2><ul><li>OpenCode and a free AI model</li><li>VS Code</li><li>Canva</li><li>Pinterest</li><li>GitHub</li></ul><p>You will need a few tools to get started. All of them are free and will only require you to create a free account. If you’re unfamiliar with these tools, don’t let that stop you. They are quite user-friendly, and there is plenty of documentation to help you get started with them.</p></section>
+<section id="step-1"><h2> Step 1: Brainstorm with Pinterest</h2><p>Before you start, take some time to think about what you want to include in your portfolio. Which projects will you showcase? How many pages will you need?</p><p>Then, think about the style. Browse Pinterest or any other source of inspiration you enjoy. This is usually where I find my initial ideas.</p></section>
+<section id="step-2"><h2> Step 2: Create a mockup in Canva</h2><p>I like to use Canva to create a mockup, but paper and pencils work too. The aim is to plan what your website will look like before you start building it.</p><p>Canva makes it easy to explore fonts, icons, and colors that you can later use on your website. I find it easier to test different combinations there before moving on to development.</p></section>
+<section id="step-3"><h2> Step 3: Create your website locally</h2><p>This is where things get a little more technical. Create a folder on your laptop and open it in VS Code. Inside that folder, create a file called <code>AGENTS.md</code>. This file gives your AI coding agent instructions about the website you want to build.</p><p>Use the template below as a starting point and adapt it to your project. Include any specific fonts or colors you want to use, either in <code>AGENTS.md</code> or in your prompt. Keep the styling simple at first: one font for headings and one for paragraphs may be enough.</p>
+<pre><code># Portfolio build specification
+
+## Goal
+Create a personal portfolio for [name / discipline].
+Audience: [clients / employers / collaborators].
+Use the supplied mockup as a visual reference.
+
+## Technology
+- Plain HTML and CSS. JavaScript only if needed for interaction.
+- No frameworks, package dependencies or build step.
+- Must open locally and work on GitHub Pages.
+
+## Content and files
+- index.html: intro, work, about and contact sections.
+- styles.css: shared styles for every page.
+- assets/images/: project images.
+- assets/files/: public PDFs or other downloads.
+- Optional project pages: project-name.html.
+- Use the content I provide; mark missing text as placeholders.
+- Do not invent experience, clients or results.
+
+## Design
+- Style: [minimal / editorial / desktop-inspired].
+- Colors: [background, text and optional accent].
+- Fonts: [system fonts or licensed font files I supply].
+- Define colors, fonts and spacing as CSS variables in :root.
+- Reuse classes; keep all website styling in styles.css.
+
+## Quality
+- Responsive layout for phone and desktop; no page overflow.
+- Semantic HTML, logical headings and descriptive image alt text.
+- Keyboard-accessible links and visible focus styles.
+- Respect prefers-reduced-motion if adding animation.
+- Relative paths, e.g. assets/images/project-one.jpg.
+- No secrets, private files or non-working contact forms.
+- Explain how to preview the site and what each file does.</code></pre>
+<p>Once your <code>AGENTS.md</code> file is ready, open the project in OpenCode, attach a screenshot of your Canva mockup, and write a prompt such as: “Create the homepage and the following pages: [list your pages]. Use the attached screenshot as a reference.”</code></pre><p>If your pages have very different layouts, it may be easier to build them one at a time. Start with the homepage, then move on to the others.</p></section>
+<section id="step-4"><h2>Step 4: Review and make small changes</h2><p>Now it’s time to take a closer look at your HTML and CSS files.</p><p>The CSS file controls how your website looks, including the styling of buttons and headings. Keeping shared styles in one place makes it easier to make changes across the whole website.</p><p>The HTML files define the content and structure. In this project, each HTML file represents a page, so this is where you can edit your text.</p><p>If you’re unsure what you’re looking at, ask your AI coding agent. Try questions like, “How do I change this heading?” or “What does this part of the code do?” I recommend using AI to help you understand the code as you make changes. Sometimes, knowing what to edit yourself is quicker than explaining every change you want the agent to make, which is why it’s nice to know the basics of coding.</p></section>
+<section id="step-5"><h2>Step 5: Add your files</h2><p>If you haven’t already, add the files you want to display, such as images of your work, to the appropriate folder in your project. Your project folder could look like this:</p><pre><code>my-portfolio/
+├── index.html
+├── styles.css
+├── AGENTS.md
+└── assets/
+    ├── images/
+    │   └── project-one.jpg
+    └── files/
+        └── portfolio.pdf</code></pre></section>
+<section id="step-6"><h2>Step 6: Publish with GitHub Pages</h2><p>On GitHub, choose <strong>New repository</strong>, name it <code>portfolio</code>, and select <strong>Public</strong>. Leave the README, license, and <code>.gitignore</code> options unselected, then create the repository.</p><p>Next, upload your website files to GitHub. In VS Code, open a <strong>new terminal</strong> in your <code>my-portfolio</code> folder. Run the commands below one line at a time in that terminal, rather than inside OpenCode. Replace <code>YOUR-USERNAME</code> with your GitHub username.</p><pre><code>git init
+git branch -M main
+git add index.html styles.css assets/
+git status
+git commit -m "Create portfolio website"
+git remote add origin https://github.com/YOUR-USERNAME/portfolio.git
+git push -u origin main</code></pre><p>Once your files are uploaded, publish your website:</p><ol><li>Open your repository on GitHub and go to <strong>Settings → Pages</strong>.</li><li>Under <strong>Build and deployment → Source</strong>, choose <strong>Deploy from a branch</strong>.</li><li>Select <strong>main</strong> and <strong>/(root)</strong>, then click <strong>Save</strong>.</li><li>Wait for deployment to finish. Your website’s URL will appear on the Pages screen. You can also follow the deployment progress in <strong>Actions</strong>.</li></ol></section>
+<section aria-labelledby="support-title"><h2 id="support-title">Enjoyed this tutorial?</h2><p>If you liked this tutorial and want to encourage me to create more, like it, share it, or buy me a coffee. Thank you for your support!</p><a href="https://buymeacoffee.com/carolineheijmans">Buy me a coffee ↗</a></section>
+</main></div><footer><div class="container">Caroline Heijmans <a href="#top">Back to top ↑</a></div></footer>
+<script>
+const links=[...document.querySelectorAll('.steps a')];
+if('IntersectionObserver' in window){const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){links.forEach(link=>{if(link.hash==='#'+entry.target.id){link.setAttribute('aria-current','location')}else{link.removeAttribute('aria-current')}})}})},{rootMargin:'-20% 0px -65% 0px',threshold:0});links.forEach(link=>{const section=document.querySelector(link.hash);if(section)observer.observe(section)})}
+</script>
+</body>
+</html>
